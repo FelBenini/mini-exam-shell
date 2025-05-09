@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commands.c                                             :+:      :+:    :+:   */
+/*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wsilveir- <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:22:15 by wsilveir-         #+#    #+#             */
-/*   Updated: 2025/05/07 20:59:53 by wsilveir-        ###   ########.fr       */
+/*   Updated: 2025/05/09 01:47:25 by fbenini-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
 void cmd_help(void) {
-	printf("Comandos disponíveis: help, hello, exit\n");
+	printf("Available commands: help, hello, exit\n");
 }
 
 void cmd_hello(void) {
-	printf("Olá! Este é um exemplo de comando.\n");
+	printf("Hello! This is a command example.\n");
 }
 
 void cmd_exit(void) {
-	printf("Saindo do programa.\n");
+	printf("Leaving the program.\n");
 }
