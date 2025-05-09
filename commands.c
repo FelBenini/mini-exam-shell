@@ -33,6 +33,55 @@ void cmd_hello(void) {
 
 void cmd_start(void) {
 	exam_started = true;
+
+	// Obter o caminho da home
+	const char *home = getenv("HOME");
+	if (home == NULL) {
+		perror("Erro ao obter a HOME");
+		return;
+	}
+	
+	// Criar caminhos completos para as pastas 'rendu' e 'subject'
+	char rendu_path[512];
+	char subject_path[512];
+	char exercise_folder_path[512];
+	
+	snprintf(rendu_path, sizeof(rendu_path), "%s/rendu", home);
+	snprintf(subject_path, sizeof(subject_path), "%s/subject", home);
+	
+	// Criar ~/rendu
+	if (mkdir(rendu_path, 0755) == 0) {
+		printf(GREEN "📁 'rendu/' folder created at %s\n" RESET, rendu_path);
+	} else if (errno == EEXIST) {
+		printf(YELLOW "⚠️  'rendu/' folder already exists at %s\n" RESET, rendu_path);
+	} else {
+		perror("Erro ao criar a pasta 'rendu'");
+	}
+	
+	// Criar ~/subject
+	if (mkdir(subject_path, 0755) == 0) {
+		printf(GREEN "📁 'subject/' folder created at %s\n" RESET, subject_path);
+	} else if (errno == EEXIST) {
+		printf(YELLOW "⚠️  'subject/' folder already exists at %s\n" RESET, subject_path);
+	} else {
+		perror("Erro ao criar a pasta 'subject'");
+	}
+	
+	// Sorteio do exercício atual
+	srand(time(NULL));
+	current_exercise_index = rand() % 3; // Sorteia um exercício aleatório do nível atual
+	const char *exercise_name = exercise_levels[current_level][current_exercise_index];
+	
+	// Criar a pasta para o exercício dentro de ~/subject
+	snprintf(exercise_folder_path, sizeof(exercise_folder_path), "%s/%s", subject_path, exercise_name);
+	
+	if (mkdir(exercise_folder_path, 0755) == 0) {
+		printf(GREEN "📁 Exercise folder '%s' created at %s\n" RESET, exercise_name, exercise_folder_path);
+	} else if (errno == EEXIST) {
+		printf(YELLOW "⚠️  Exercise folder '%s' already exists at %s\n" RESET, exercise_name, exercise_folder_path);
+	} else {
+		perror("Erro ao criar a pasta do exercício");
+	}
 	time_t now = time(NULL);
 	struct tm *t = localtime(&now);
 
