@@ -22,7 +22,12 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
+#include <stdbool.h>
 #define MSG_INSTRUCTIONS "Welcome to mini exam shell, a 42 Exam Environment Simulator!\n\n Mini exam shell is a traning ground for 42 students-a stress-free simulator to\n master the exam environment, build confidence, and adapt before the real battle.\n\n" YELLOW BOLD"• start" RESET " - Start the exam shell session\n" BOLD GREEN"• grademe" RESET " - Submit an exercise for evaluation\n" BOLD PURPLE"• finish" RESET " - End the exam shell and submit it\n"
 void	print_banner(void);
+void	cmd_help(void);
+void	cmd_hello(void);
+void	cmd_exit(void);
 
 #endif
