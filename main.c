@@ -22,7 +22,9 @@ typedef struct {
 Command command_list[] = {
 	{"help", cmd_help},
 	{"hello", cmd_hello},
-	{"exit", cmd_exit},
+	{"start", cmd_start},
+	{"grademe", cmd_grademe},
+	{"finish", cmd_finish},
 	{NULL, NULL}
 };
 
@@ -45,7 +47,7 @@ int main(void)
 		bool found = false;
 		for (int i = 0; command_list[i].name != NULL; i++) {
 			if (strcmp(input, command_list[i].name) == 0) {
-				if (strcmp(input, "exit") == 0)
+				if (strcmp(input, "finish") == 0)
 					running = false;
 				command_list[i].func();
 				found = true;
@@ -60,5 +62,3 @@ int main(void)
 
 	return 0;
 }
-
-
